@@ -1,0 +1,21 @@
+string_1 = "a gentleman"
+string_2 = "elegant mane"
+
+count = 0
+
+string_1 = string_1.replace(" ", "")
+string_2 = string_2.replace(" ", "")
+
+for i in range(len(string_1)):  # iterate over elements in string
+    for j in range(len(string_2)):
+        if i == j: # check if elements match and the strings are the same length
+            count += 1
+            if count == len(string_1) and count == len(string_2):
+                print("Strings are anagrams")
+                exit()
+
+print("Strings are not anagrams")
+
+
+
+
