@@ -9,4 +9,4 @@ def recur_fibo(n):
 nterms = 15
 
 for i in range(nterms):
-    print(recur_fibo(i), end=' ')
+    print(recur_fibo(i))
