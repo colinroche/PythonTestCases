@@ -27,6 +27,7 @@ class LinkedList:
         i = 0
         # set to 29 to stop endless loop
         while node and i < 29:
+            # create list which contains the value present in each node
             values.append(node.val)
             node = node.next
             i+=1
@@ -34,9 +35,9 @@ class LinkedList:
             print("Elements present in Linked List: ", end="")
             for value in values:
                 print(value, end=" ")
-            print()
+            print("\n")
         else:
-            print("Linked List not created or empty")
+            print("Linked List not created or empty\n")
 
 
     # Function to find the number of Nodes in a Linked List
@@ -77,12 +78,15 @@ class LinkedList:
             print("No Elements present in Linked List")
             exit()
 
+        # check element at set position
         while count < pos:
             node = node.next
             count += 1
         
+        # start loop at position
         join = node
 
+        # add all element then revert back to looping position
         while node.next != None:
             node = node.next
 
@@ -123,19 +127,29 @@ class LinkedList:
                 node = node.next
                 count += 1
             node.next = None
+        print("Loop has been removed from Linked List")
+
+    # Function for adding characters in range to Linked List
+    def addAlpha(self, countRange):
+        characters = "abcdefghijklmnopqrstuvwxyz"
+        for i in countRange:
+            self.addNode(characters[i])
+        
 
 # Driver code
-list_1 = LinkedList()
-'''list_1.addNode("e")
-list_1.addNode("d")
-list_1.addNode("c")
-list_1.addNode("b")
-list_1.addNode("a")'''
-
-
 pos = 3
+countRange1 = range(0,5)
+countRange2 = range(5,10)
 
-list_1.addLoop(pos)
-list_1.removeLoop()
+list_1 = LinkedList()
+list_1.addAlpha(countRange1)
+
+list_2 = LinkedList()
+list_2.addAlpha(countRange2)
+
+#list_1.addLoop(pos)
+#list_1.removeLoop()
+#list_1.getCount()
+
 list_1.printList()
-list_1.getCount()
+list_2.printList()
