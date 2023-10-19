@@ -1,3 +1,5 @@
+import random as r
+
 class Node(object):
 
     def __init__(self, val=None):
@@ -19,6 +21,16 @@ class LinkedList:
         # Move the head to point at the Node
         self.head = node
 
+    # Function for adding random alphabetic characters in range to Linked List
+    def addAlpha(self, length):
+        characters = "abcdefghijklmnopqrstuvwxyz"
+        i = 0
+
+        while i < length:
+            x = r.randrange(0,26)
+            self.addNode(characters[x])
+            i += 1
+
     # A utility function to print a given linked list
     def printList(self):
         node = self.head
@@ -32,10 +44,10 @@ class LinkedList:
             node = node.next
             i+=1
         if values != None:
-            print("Elements present in Linked List: ", end="")
+            print("\nElements present in Linked List: ", end="")
             for value in values:
-                print(value, end=" ")
-            print("\n")
+                print(value, end=" -> ")
+            print()
         else:
             print("Linked List not created or empty\n")
 
@@ -50,6 +62,7 @@ class LinkedList:
             while node:
                 count += 1
                 node = node.next
+            print("The number of elements in Linked List are:", count)
             return count
         else:
             print("Linked List is empty")
@@ -108,7 +121,7 @@ class LinkedList:
                 # return position of loop as well
                 return True and count
 
-            # If the first time seeing node, insert
+            # if the first time seeing node, insert
             s.add(node)
             node = node.next
             count += 1
@@ -128,28 +141,71 @@ class LinkedList:
                 count += 1
             node.next = None
         print("Loop has been removed from Linked List")
-
-    # Function for adding characters in range to Linked List
-    def addAlpha(self, countRange):
-        characters = "abcdefghijklmnopqrstuvwxyz"
-        for i in countRange:
-            self.addNode(characters[i])
         
+    # Function using bubble sort on Linked List
+    def bubbleSort(self):
+        # initialise variables
+        node = self.head
+        curr = None
+        temp = None
+        prev = None
+        new_head = None
+
+        if node != None:
+            while node != None:
+                # set the current node and the temporary node to the Linked list head
+                curr = node
+                temp = node
+                prev = None
+
+                while curr != None:
+                    # if the value of the current node is greater then the previous node
+                    if curr.next != None and curr.next.val > temp.val:
+                        # set the new node values incrementally
+                        temp = curr.next
+                        prev = curr
+                    
+                    curr = curr.next
+
+                # set previous node's next equal to the temp node's next
+                if prev != None:
+                    prev.next = temp.next
+
+                # if the temp node equals the Linked List head, set that node equal to the next
+                if temp == node:
+                    node = node.next
+
+                # set the temp node's next equal to the new head of Linked List
+                temp.next = new_head
+                # set the new head value equal to the temp node
+                new_head = temp
+
+            # make new head
+            self.head = new_head
+          
+        else:
+           print("Empty Linked list")
 
 # Driver code
+rangeLength = 5
+i =0
+
 pos = 3
-countRange1 = range(0,5)
-countRange2 = range(5,10)
 
 list_1 = LinkedList()
-list_1.addAlpha(countRange1)
+list_1.addAlpha(rangeLength)
 
-list_2 = LinkedList()
-list_2.addAlpha(countRange2)
+
+#list_2 = LinkedList()
+#list_2.addAlpha(rangeLength)
 
 #list_1.addLoop(pos)
 #list_1.removeLoop()
 #list_1.getCount()
+#list_1.getMid()
 
 list_1.printList()
-list_2.printList()
+list_1.bubbleSort()
+list_1.printList()
+
+#list_2.printList()
