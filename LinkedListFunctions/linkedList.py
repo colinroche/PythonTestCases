@@ -186,6 +186,24 @@ class LinkedList:
         else:
            print("Empty Linked list")
 
+    def mergeList(self, otherList):
+        node_1 = self.head
+        node_2 = otherList.head
+        merged = LinkedList()
+
+        while node_1 != None:
+            merged.addNode(node_1.val)
+            node_1 = node_1.next
+
+        while node_2 != None:
+            merged.addNode(node_2.val)
+            node_2 = node_2.next
+
+        merged.bubbleSort()
+        return merged
+    
+        
+
 # Driver code
 rangeLength = 5
 i =0
@@ -195,17 +213,20 @@ pos = 3
 list_1 = LinkedList()
 list_1.addAlpha(rangeLength)
 
-
-#list_2 = LinkedList()
-#list_2.addAlpha(rangeLength)
+list_2 = LinkedList()
+list_2.addAlpha(rangeLength)
 
 #list_1.addLoop(pos)
 #list_1.removeLoop()
 #list_1.getCount()
 #list_1.getMid()
 
-list_1.printList()
 list_1.bubbleSort()
 list_1.printList()
 
-#list_2.printList()
+list_2.bubbleSort()
+list_2.printList()
+
+mergedList = list_1.mergeList(list_2)
+mergedList.printList()
+
